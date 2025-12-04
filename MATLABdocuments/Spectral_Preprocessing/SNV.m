@@ -7,7 +7,7 @@ close all
 %+86-19173163751 
 %cloudsyu87@qq.com ; cloudsyu87@swjtu.edu.cn
 
-% 1. 交互式选择文件
+% 1. 交互式选择文件;Interactive File Selection
 [file, path] = uigetfile('*.csv', '请选择你的红外光谱CSV数据文件');
 if isequal(file, 0)
     disp('用户取消了操作');
@@ -17,17 +17,17 @@ else
     disp(['正在处理文件: ', file, ' ...']);
 end
 
-% 2. 读取数据
+% 2. 读取数据;Read Data
 raw_data = readmatrix(fullpath);
 if any(isnan(raw_data(1,:)))
     raw_data(1,:) = [];
 end
 
-% 3. 数据拆分
+% 3. 数据拆分;Data Splitting
 wavenumbers = raw_data(:, 1);      % 第一列：波数
 spectra = raw_data(:, 2:end);      % 第二列至最后：吸光度矩阵
 
-% 4. SNV 标准正态变量变换处理
+% 4. SNV 标准正态变量变换处理;Standard Normal Variate transformation
 % 计算每个样本(每列)的平均值
 mean_spectra = mean(spectra, 1);
 
@@ -39,7 +39,7 @@ std_spectra = std(spectra, 0, 1);
 % 利用 MATLAB 的隐式扩展功能，直接运算，无需循环
 spectra_snv = (spectra - mean_spectra) ./ std_spectra;
 
-% 5. 可视化对比
+% 5. 可视化对比;Visual Comparison
 figure('Name', 'SNV 处理前后对比');
 subplot(2,1,1);
 plot(wavenumbers, spectra);
@@ -53,7 +53,7 @@ title('SNV 校正后光谱 (SNV Corrected)');
 xlabel('Wavenumber (cm^{-1})'); ylabel('Standardized Intensity'); % 注意单位变化
 axis tight;
 
-% 6. 保存结果
+% 6. 保存结果;Saving Results
 output_data = [wavenumbers, spectra_snv];
 [~, name, ext] = fileparts(file);
 output_filename = fullfile(path, [name, '_SNV', ext]);
@@ -61,3 +61,4 @@ output_filename = fullfile(path, [name, '_SNV', ext]);
 writematrix(output_data, output_filename);
 
 disp(['处理完成！结果已保存为: ', output_filename]);
+
