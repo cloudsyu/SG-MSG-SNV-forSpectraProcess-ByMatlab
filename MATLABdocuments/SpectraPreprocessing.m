@@ -2,6 +2,8 @@ clc
 clear
 close all
 
+%按顺序进行SG、MSC、SNV预处理
+
 %Coded by CloudsYu87 王天宇-Wang Tianyu
 %School of Civil Engineering, Southwest Jiaotong University (SWJTU)  
 %+86-19173163751 
@@ -103,5 +105,6 @@ processed_data = [wavenumbers, spectra_final];
 spectra_filename = fullfile(path, [name, '_Processed_Spectra.csv']);
 writematrix(processed_data, spectra_filename);
 disp(['最终处理光谱已保存: ', spectra_filename]);
+
 
 disp('所有任务执行完毕！');
