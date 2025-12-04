@@ -2,6 +2,11 @@ clc
 clear
 close all
 
+%Coded by CloudsYu87 王天宇-Wang Tianyu
+%School of Civil Engineering, Southwest Jiaotong University (SWJTU)  
+%+86-19173163751 
+%cloudsyu87@qq.com ; cloudsyu87@swjtu.edu.cn
+
 % 1. 交互式选择文件
 [file, path] = uigetfile('*.csv', '请选择你的红外光谱CSV数据文件');
 if isequal(file, 0)
@@ -57,5 +62,5 @@ subplot(2,1,2);
 plot(wavenumbers, spectra_msc);
 title('MSC 校正后光谱 (MSC Corrected)');
 xlabel('Wavenumber (cm^{-1})'); ylabel('Absorbance');
-
 axis tight;
+
