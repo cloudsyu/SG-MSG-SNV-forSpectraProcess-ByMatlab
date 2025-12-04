@@ -1,0 +1,2 @@
+# SG-MSG-SNV-forSpectraProcess-ByMatlab
+使用matlab语言实现光谱预处理中的Savitzky-Golay卷积平滑法、多元散射校正MSC、标准正态化校正SNV、一阶导数校正D1预处理方法消除光谱噪声
